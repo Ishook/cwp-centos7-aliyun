@@ -58,6 +58,9 @@ fi
 # Enable epel respository
 yum -y install epel-release
 
+# Change Aliyun Default Repository
+wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo
+
 # Add CWP Repository
 cat > /etc/yum.repos.d/cwp.repo <<EOF
 [cwp]
@@ -77,7 +80,7 @@ gpgkey=https://mirrors.ustc.edu.cn/mariadb/yum/RPM-GPG-KEY-MariaDB
 gpgcheck=0
 EOF
 
-yum -y makecache fast
+yum -y makecache
 
 #Umask Fix
 sed -ie "s/umask\=002/umask=022/g" /etc/bashrc >/dev/null 2>&1
